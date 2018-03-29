@@ -11,15 +11,15 @@ window.onload = function() {
     context = canvas.getContext("2d");
     posX = document.getElementById("posX");
     posY = document.getElementById("posY");
-	robotPosX = document.getElementById("X");
-	robotPosY = document.getElementById("Y");
+  robotPosX = document.getElementById("X");
+  robotPosY = document.getElementById("Y");
 }
 
 function Robot() {
   this.up = function() {
-  	checking();
-  	rectY-=100;
-  	    if (rectY <= 0) {
+    checking();
+    rectY-=100;
+        if (rectY <= 0) {
         rectY = 100;
         counter[2]++;
         if(counter[2] == 2){
@@ -36,9 +36,9 @@ function Robot() {
     }
   };
   this.down = function() {
-	checking();
-  	rectY+=100;
-  	    if (rectY > canvas.height) {
+  checking();
+    rectY+=100;
+        if (rectY > canvas.height) {
         rectY = canvas.height;
         counter[3]++;
         if(counter[3] == 2){
@@ -55,9 +55,9 @@ function Robot() {
     }
   };
   this.left = function() {
-  	checking();
-  	rectX-=100;
-  	    if (rectX <= 0) {
+    checking();
+    rectX-=100;
+        if (rectX <= 0) {
         rectX = 100;
         counter[0]++;
         if(counter[0] == 2){ 
@@ -75,9 +75,9 @@ function Robot() {
     }
   };
   this.right = function() {
-  	checking();
-	rectX+=100;
-	    if (rectX > canvas.width) {
+    checking();
+  rectX+=100;
+      if (rectX > canvas.width) {
         rectX = canvas.width;
         counter[1]++;
         if(counter[1] == 2){
@@ -99,12 +99,24 @@ function Robot() {
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.beginPath();
     context.fillStyle = "#666666";
-	context.fillRect(rectX-100, rectY-100, 100, 100);
+  context.fillRect(rectX-100, rectY-100, 100, 100);
     posX.value = "X: " + rectY/100;
     posY.value = "Y: " + rectX/100;   
   }  
 };
-
+function drawBoard(){
+  var p = 0;
+  for (var x = 0; x <= canvas.width; x += 100) {
+      context.moveTo(0.5 + x + p, p);
+      context.lineTo(0.5 + x + p, canvas.height + p);
+  }
+  for (var x = 0; x <= canvas.height; x += 100) {
+      context.moveTo(p, 0.5 + x + p);
+      context.lineTo(canvas.width + p, 0.5 + x + p);
+  }
+  context.strokeStyle = "black";
+  context.stroke();
+}
 function setSize(){
   var width_p = document.getElementById("canvas_width_p");
   var height_p = document.getElementById("canvas_height_p");
@@ -134,6 +146,7 @@ function setSize(){
   width_p.hidden = true;
   height_p.hidden = true;
   set.hidden = true;
+
 }
 
 var robot = new Robot();
@@ -152,13 +165,14 @@ function runGame(){
   robot.move();
   var run = document.getElementById("run");
   run.hidden = true;
+  drawBoard();
 }
 
 function checking(){
-	if(robX != 0 && robY != 0){
-	rectX = parseInt(robX);
-	rectY = parseInt(robY);
-	}
+  if(robX != 0 && robY != 0){
+  rectX = parseInt(robX);
+  rectY = parseInt(robY);
+  }
     robX = 0;
     robY = 0;
 }
@@ -177,5 +191,6 @@ function onkeydown(e) {
         robot.down();
     } //down arrow
     robot.move();
+    drawBoard();
 }
 window.addEventListener("keydown", onkeydown);
