@@ -1,0 +1,49 @@
+<!-- Jessica Odefjord -->
+<!DOCTYPE HTML> 
+	<html lang="sv">
+		<head>
+			<meta charset="utf-8">
+			<script type="text/javascript" src="robot.js"></script>
+			<title>Robot</title>
+		</head>
+			<body>
+				<header>
+					<h1>Robot</h1>
+				</header>
+					<main>
+						   <p id = "canvas_height_p">Высота поля: <select id = "canvas_height">
+						    <option selected value="500">5</option>
+						    <option value="600">6</option>
+						    <option value="700">7</option>
+						    <option value="800">8</option>
+						    <option value="900">9</option>
+						    <option value="1000">10</option>
+						    <option value="1100">11</option>
+						    <option value="1200">12</option>
+						    <option value="1300">13</option>
+						    <option value="1400">14</option>
+						    <option value="1500">15</option>						    						    
+						   </select></p>
+						   <p id = "canvas_width_p">Ширина поля: <select id = "canvas_width">
+						    <option selected value="600">6</option>
+						    <option value="700">7</option>
+						    <option value="800">8</option>
+						    <option value="900">9</option>
+						    <option value="1000">10</option>
+						    <option value="1100">11</option>
+						    <option value="1200">12</option>
+						    <option value="1300">13</option>
+						    <option value="1400">14</option>
+						    <option value="1500">15</option>						    
+						   </select></p>
+						   <p><input type="button" onclick="setSize()" value="Построить" id = "setS"/></p>
+					   	   <p id = "sX">Позиция Х: <select id = "X"></select></p>		
+					   	   <p id = "sY">Позиция Y: <select id = "Y"></select></p>		   
+						   <p><input type="button" id = "run"  onclick="runGame()" value="Играть" hidden = "true" /></p>
+							<canvas id="myCanvas" style = "border: 2px solid black;" hidden = "true">
+							</canvas>
+							<input type="button" id = "posX" hidden = "true" style="font-size: 14pt" />
+							<input type="button" id = "posY" hidden = "true" style="font-size: 14pt" />
+					</main>
+			</body>
+	</html>
